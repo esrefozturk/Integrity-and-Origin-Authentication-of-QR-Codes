@@ -80,7 +80,7 @@ We propose to achieve in 3 steps:
 
 \subsection{Key Generation}
 
-Firstly, origins should generate a pair of keys, one private and one public. Public key will be put to a public database which maps origin identifier to it's public key. Private key will be kept private by origin.
+Firstly, origins should generate a pair of keys, one private and one public. Public key and origin identifier will be put to a public database which maps origin identifier to it's public key. Private key will be kept private by origin.
 
 
 \begin{center}
@@ -88,6 +88,9 @@ Firstly, origins should generate a pair of keys, one private and one public. Pub
 \end{center}
 
 \subsection{Encoding}
+
+Once an origin generated keys, it will be able to generate QR codes. Message will be hashed, then encrypted, it other words signed, with the private key of the origin. Afterwards message, signature and origin identifier will be concatenated and it will be used to generate QR code.
+
 \begin{center}
 \includegraphics[scale=0.5]{Encoding}
 \end{center}
