@@ -61,8 +61,22 @@ QR codes have become common in consumer advertising. Typically, a smartphone is 
 
 \subsubsection{Security Risks}
 
+There are various security risks involved with the qr codes.
+
+\textbf{Phishing}
 
 
+Phishing is the main issue with the QR codes. Attackers send a fake web login page which pretends to be the original login page of the website it’s claiming to be. When an innocent user use this fake page to login, his/her login information is sent to the attacker. And now, his/her password is in the hands of the attacker.
+
+
+
+\textbf{Malicious software distribution}
+
+Scammers generally use malicious websites to distribute malware via drive by download attack. Drive by download attacks are attacks in which a website forcefully downloads software in your device when you visit the website. QR codes can be used to point malicious websites. Since QR codes cannot be read, it is easier to trick the user. User is only seeing the reader opening a seemingly harmless web page. In Russia, a malicious QR code on scanning sent SMS to premium numbers costing \$6 USD per SMS.
+
+\textbf{Linking to harmful websites}
+
+Linking to dangerous websites with browser exploits can do a lot harm to user because browser exploits can enable microphone/camera access, send emails or join a botnet to perform a DDOS attack on any legit website.
 
 \subsection{Data origin authentication}
 
@@ -84,7 +98,7 @@ Firstly, origins should generate a pair of keys, one private and one public. Pub
 
 
 \begin{center}
-\includegraphics[scale=0.5]{KeyGeneration}
+\includegraphics[scale=0.6]{KeyGeneration}
 \end{center}
 
 \subsection{Encoding}
@@ -92,7 +106,7 @@ Firstly, origins should generate a pair of keys, one private and one public. Pub
 Once an origin generated keys, it will be able to generate QR codes. Message will be hashed, then encrypted, it other words signed, with the private key of the origin. Afterwards message, signature and origin identifier will be concatenated and it will be used to generate QR code.
 
 \begin{center}
-\includegraphics[scale=0.5]{Encoding}
+\includegraphics[scale=0.6]{Encoding}
 \end{center}
 
 
