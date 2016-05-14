@@ -84,7 +84,7 @@ Firstly, origins should generate a pair of keys, one private and one public. Pub
 
 
 \begin{center}
-\includegraphics[scale=0.4]{KeyGeneration}
+\includegraphics[scale=0.5]{KeyGeneration}
 \end{center}
 
 \subsection{Encoding}
@@ -97,6 +97,10 @@ Once an origin generated keys, it will be able to generate QR codes. Message wil
 
 
 \subsection{Decoding}
+
+QR code will be read and by using origin identifier, public key will be obtained from publicly available directory. Using public key, signature will be decrypted and will be compared to the hash of message. If they are not equal message will be discarded. 
+
+
 \begin{center}
 \includegraphics[scale=0.6]{Decoding}
 \end{center}
