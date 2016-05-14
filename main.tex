@@ -15,14 +15,14 @@
 \IEEEtitleabstractindextext{%
 \begin{abstract}
 
-During recent years QR codes started to be used in many areas including posters, business and personal cards and mobile application links. However it brings a danger with itself, that is no one can be sure if qr code is generated  by who. This report is intented  to make a solution to this problem with origin authentication extension to QR codes.
+During recent years QR codes started to be used in many areas including posters, business and personal cards and mobile application links. However, it brings a danger with itself, that is no one can be sure if qr code is generated  by who. This report is intented  to make a solution to this problem with origin authentication extension to QR codes.
 
 \end{abstract}
 
 
 \begin{IEEEkeywords}
 
- QR Codes, Origin authentication, Signature
+ QR Codes, Data-Origin authentication, Signature
 
 \end{IEEEkeywords}}
 
@@ -34,14 +34,42 @@ During recent years QR codes started to be used in many areas including posters,
 
 \IEEEpeerreviewmaketitle
 
+
+
 \section{Introduction}
 
-\IEEEPARstart{Q}{R} code (Quick Response Code) is the trademark for a type of matrix barcode (or two-dimensional barcode) first designed for the automotive industry in Japan. A barcode is a machine-readable optical label that contains information about the item to which it is attached. A QR code uses four standardized encoding modes (numeric, alphanumeric, byte/binary, and kanji) to efficiently store data; extensions may also be used.
 
-A QR code consists of black modules (square dots) arranged in a square grid on a white background, which can be read by an imaging device (such as a camera, scanner, etc.) and processed using Reed–Solomon error correction until the image can be appropriately interpreted. The required data are then extracted from patterns that are present in both horizontal and vertical components of the image.
+\IEEEPARstart{Q}{R} code or Quick Response code was originally designed for industrial applications, and has quickly gained popularity in the advertising industry.
+
+With the increasing use of smartphones, QR codes are becoming popular. Smartphone camera can easily read QR codes. Due to fast readability, it is now widely accepted. The use of QR codes is increasing but most users are unaware of the security risks.
+
+
+Much of these security risks are because the origin of the QR codes are not known. In this article, we aim to show some of the security risks related and come up with a solution which extends QR codes to have data origin authentication.
+
+
+\subsection{QR Code}
+QR code (abbreviated from Quick Response Code) is the trademark for a type of matrix barcode (or two-dimensional barcode) first designed for the automotive industry in Japan. A barcode is a machine-readable optical label that contains information about the item to which it is attached. A QR code uses four standardized encoding modes (numeric, alphanumeric, byte/binary, and kanji) to efficiently store data; extensions may also be used.
+
+
+\subsubsection{Design}
+
+Unlike the older, one-dimensional barcodes that were designed to be mechanically scanned by a narrow beam of light, a QR code is detected by a 2-dimensional digital image sensor and then digitally analyzed by a programmed processor. The processor locates the three distinctive squares at the corners of the QR code image, using a smaller square (or multiple squares) near the fourth corner to normalize the image for size, orientation, and angle of viewing. The small dots throughout the QR code are then converted to binary numbers and validated with an error-correcting algorithm.
+
+
+\subsubsection{Uses}
+
+QR codes have become common in consumer advertising. Typically, a smartphone is used as a QR code scanner, displaying the code and converting it to some useful form (such as a standard URL for a website, thereby obviating the need for a user to type it into a web browser). QR code has become a focus of advertising strategy, since it provides a way to access a brand's website more quickly than by manually entering a URL. Usage areas include \textbf{Mobile operating systems, URLS, Code payments, Website logins}.
+
+\subsubsection{Security Risks}
 
 
 
+
+\subsection{Data origin authentication}
+
+Data origin authentication provides for the corroboration of the source
+of a data unit. In a connectionless transfer, it provides assurance that
+the source of received data is as claimed.
 
 
 \begin{thebibliography}{1}
