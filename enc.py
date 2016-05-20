@@ -1,38 +1,45 @@
-import rsa
-import qrcode
-import base64
+from sys import argv
+from rsa import PrivateKey,sign
+from qrcode import QRCode
+from qrcode.constants import ERROR_CORRECT_L
+
+def padding( string , size ):
+	return ( size - len(string) ) * '*'  + string
 
 
+def main():
+	if len(argv) < 3:
+		print 'Format: enc.py <identifier> <message>'
+		return
+
+	ID = argv[1] # Identifier of origin
+	MESSAGE = argv[2] 
+
+	# Read private key of origin
+	with open(ID+'.pr','r') as f:
+		privatekey = PrivateKey.load_pkcs1( f.read() )
+
+	# Sign message with private key
+	SIGN = sign( MESSAGE , privatekey , 'SHA-256' )
+
+	# Concatenate message, signature and identifier
+	TEXT = padding( MESSAGE , 100 ) +   padding( SIGN , 400 )  +  padding( ID ,100 )
+
+	# Create QR code
+	qr = QRCode(
+		version=40,
+		error_correction=ERROR_CORRECT_L,
+		box_size=10,
+		border=4,
+		)
+
+	qr.add_data( TEXT )
+	qr.make(fit=True)
+
+	img = qr.make_image()
+	img.save(ID + '.png')
 
 
-
-URL = 'http://google.com/asdqwe'
-
-def f( string , size ):
-	print '---->',string
-	if size > len(string):
-		return ( size - len(string) ) * '*'  + string
-
-( public , private ) = rsa.newkeys(1024)
-
-signature = rsa.sign( URL , private , 'SHA-256' )
-
-signature = base64.encodestring(signature)
-
-C = f( URL , 100 ) +  f( signature , 400 )  + f('GOOGLE',100 )
-
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=4,
-)
-qr.add_data( C )
-qr.make(fit=True)
-
-img = qr.make_image()
-img.save('a.png')
-
-open('public','w').write( public.save_pkcs1() )
-
+if __name__ == '__main__':
+	main()
 
