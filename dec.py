@@ -1,29 +1,28 @@
-import rsa
-import qrtools
-import base64
+from rsa import PublicKey,verify
+from qrtools import QR
+from sys import argv
 
-def ff( string ):
-	return string.strip('*\r\n ')
+def main():
+	if len(argv) < 2:
+		print 'Format: enc.py <image>'
+		return
 
-public = rsa.PublicKey.load_pkcs1( open('public').read() )
+	qr = QR()
+	qr.decode(argv[1])
 
-qr = qrtools.QR()
-
-qr.decode("a.png")
-
-C =  qr.data
-
-
-URL = ff(C[:100])
-signed = ff( C[100:500] )
-org = ff( C[500:] )
+	TEXT =  qr.data
 
 
+	MESSAGE = TEXT[:100].strip('*\r\n')
+	SIGN = TEXT[100:500].strip('*\r\n').decode('hex')
+	ID = TEXT[500:].strip('*\r\n')
 
-print URL
-print signed
-print org
-print public
+	publickey = PublicKey.load_pkcs1( open('DB/'+ID+'.pub').read() )
 
-print rsa.verify( URL , base64.decodestring(signed) , public )
+	if verify( MESSAGE , SIGN , publickey ):
+		print MESSAGE
+	else:
+		print 'VERIFICATION FAILED!'
 
+if __name__ == '__main__':
+	main()

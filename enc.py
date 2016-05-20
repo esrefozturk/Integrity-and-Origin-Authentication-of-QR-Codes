@@ -20,14 +20,15 @@ def main():
 		privatekey = PrivateKey.load_pkcs1( f.read() )
 
 	# Sign message with private key
-	SIGN = sign( MESSAGE , privatekey , 'SHA-256' )
+	SIGN = sign( MESSAGE , privatekey , 'SHA-256' ).encode('hex')
 
 	# Concatenate message, signature and identifier
 	TEXT = padding( MESSAGE , 100 ) +   padding( SIGN , 400 )  +  padding( ID ,100 )
 
+
 	# Create QR code
 	qr = QRCode(
-		version=40,
+		version=1,
 		error_correction=ERROR_CORRECT_L,
 		box_size=10,
 		border=4,
