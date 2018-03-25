@@ -1,8 +1,21 @@
 Integrity and Origin Authentication of QR Codes
 ====
 
-![](KeyGeneration.png)
+- [Report](report.pdf)
 
-![](Encoding.png)
+- [Presentation](presentation.pdf)
+ 
+- Method
 
-![](Decoding.png)
+  - Key Generation
+    - ![](KeyGeneration.png)
+
+  - Encoding
+    - ![](Encoding.png)
+    
+  - Decoding
+    - ![](Decoding.png)
+
+
+
+
