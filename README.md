@@ -1,8 +1,8 @@
 Integrity and Origin Authentication of QR Codes
 ====
 
-![][KeyGeneration.png]
+![](KeyGeneration.png)
 
-![][Encoding.png]
+![](Encoding.png)
 
-![][Decoding.png]
+![](Decoding.png)
