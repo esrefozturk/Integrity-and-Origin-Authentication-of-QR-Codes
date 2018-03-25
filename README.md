@@ -1,1 +1,2 @@
-781 Project
+Integrity and Origin Authentication of QR Codes
+====
